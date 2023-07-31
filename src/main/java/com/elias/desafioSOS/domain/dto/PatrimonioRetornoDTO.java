@@ -17,5 +17,7 @@ public class PatrimonioRetornoDTO {
 
     private String numeroTombo;
 
+    private String nameArquivo;
+
     private MarcaDTO marca;
 }

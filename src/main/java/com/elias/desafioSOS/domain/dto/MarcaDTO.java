@@ -13,4 +13,6 @@ public class MarcaDTO {
 
     private String nome;
 
+    private String nameArquivo;
+
 }
