@@ -45,7 +45,7 @@ public class FileStoragePatrimonio {
         try {
             Path targetLocation = this.fileStorageLocation.resolve(filename);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-            patrimonioService.update(patrimonio);
+            patrimonioService.updateArquivo(patrimonio);
             return filename;
         } catch (Exception e) {
             throw new FileStorageExcepetion("Não foi possível salvar o arquivo " + filename, e);

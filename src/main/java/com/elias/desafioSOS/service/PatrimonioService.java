@@ -32,7 +32,15 @@ public class PatrimonioService {
         return patrimonioRepository.findById(id).orElse(null);
     }
 
-    public Patrimonio update(Patrimonio patrimonio){
+    public Patrimonio update(Patrimonio patrimonio, Marca marca){
+        Patrimonio patriomonioArquivo = findById(patrimonio.getId());
+        patrimonio.setNameArquivo(patriomonioArquivo.getNameArquivo());
+        Patrimonio patrimonioRetorno = findById(patrimonio.getId());
+        patrimonio.setMarca(marca);
+        patrimonio.setNumeroTombo(patrimonioRetorno.getNumeroTombo());
+        return patrimonioRepository.save(patrimonio);
+    }
+    public Patrimonio updateArquivo(Patrimonio patrimonio){
         Patrimonio patrimonioRetorno = findById(patrimonio.getId());
         patrimonio.setNumeroTombo(patrimonioRetorno.getNumeroTombo());
         return patrimonioRepository.save(patrimonio);

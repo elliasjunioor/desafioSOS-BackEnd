@@ -1,10 +1,9 @@
 package com.elias.desafioSOS.controller;
 
-import com.elias.desafioSOS.domain.dto.MarcaDTO;
+
 import com.elias.desafioSOS.domain.dto.PatrimonioDTO;
 import com.elias.desafioSOS.domain.dto.PatrimonioRetornoDTO;
 import com.elias.desafioSOS.domain.dto.UploadFileDTO;
-import com.elias.desafioSOS.mapper.MarcaMapper;
 import com.elias.desafioSOS.mapper.PatrimonioMapper;
 import com.elias.desafioSOS.service.FileStoragePatrimonio;
 import com.elias.desafioSOS.service.MarcaService;
@@ -50,7 +49,7 @@ public class PatrimonioController {
     @PutMapping
     public ResponseEntity<PatrimonioRetornoDTO> update(@RequestBody PatrimonioDTO patrimonioDTO){
         return ResponseEntity.status(HttpStatus.OK).body(PatrimonioMapper.INSTANCE.entityToPatrimonioRetornoDTO(patrimonioService
-                .update(PatrimonioMapper.INSTANCE.dtoToEntity(patrimonioDTO))));
+                .update(PatrimonioMapper.INSTANCE.dtoToEntity(patrimonioDTO), marcaService.findById(patrimonioDTO.getIdMarca()))));
     }
     @Operation(summary = "Obter Patrimonio por ID")
     @GetMapping
