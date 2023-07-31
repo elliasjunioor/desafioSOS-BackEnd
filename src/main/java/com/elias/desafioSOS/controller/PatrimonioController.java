@@ -7,6 +7,7 @@ import com.elias.desafioSOS.domain.dto.UploadFileDTO;
 import com.elias.desafioSOS.mapper.MarcaMapper;
 import com.elias.desafioSOS.mapper.PatrimonioMapper;
 import com.elias.desafioSOS.service.FileStoragePatrimonio;
+import com.elias.desafioSOS.service.MarcaService;
 import com.elias.desafioSOS.service.PatrimonioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,11 +37,13 @@ public class PatrimonioController {
 
     private final FileStoragePatrimonio fileStoragePatrimonio;
 
+    private final MarcaService marcaService;
+
     @Operation(summary = "Salvar Patrimonios")
     @PostMapping
     public ResponseEntity<PatrimonioRetornoDTO> save(@RequestBody PatrimonioDTO patrimonioDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(PatrimonioMapper.INSTANCE.entityToPatrimonioRetornoDTO(patrimonioService
-                .save(PatrimonioMapper.INSTANCE.dtoToEntity(patrimonioDTO))));
+                .save(PatrimonioMapper.INSTANCE.dtoToEntity(patrimonioDTO), marcaService.findById(patrimonioDTO.getIdMarca()))));
     }
 
     @Operation(summary = "Atualizar Patrimonios")

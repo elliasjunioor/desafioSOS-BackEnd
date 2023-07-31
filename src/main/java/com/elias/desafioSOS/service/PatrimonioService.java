@@ -1,5 +1,6 @@
 package com.elias.desafioSOS.service;
 
+import com.elias.desafioSOS.domain.entity.Marca;
 import com.elias.desafioSOS.domain.entity.Patrimonio;
 import com.elias.desafioSOS.repositories.PatrimonioRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,10 @@ public class PatrimonioService {
     private final PatrimonioRepository patrimonioRepository;
 
 
-    public Patrimonio save(Patrimonio patrimonio){
+    public Patrimonio save(Patrimonio patrimonio, Marca marca){
         Random random = new Random();
         Integer numeroTombo = random.nextInt(9999);
+        patrimonio.setMarca(marca);
         patrimonio.setNumeroTombo(numeroTombo.toString());
         return patrimonioRepository.save(patrimonio);
     }

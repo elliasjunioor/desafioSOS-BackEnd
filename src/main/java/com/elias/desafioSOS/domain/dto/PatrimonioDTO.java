@@ -15,6 +15,6 @@ public class PatrimonioDTO {
 
     private String descricao;
 
-    private MarcaDTO marca;
+    private Long idMarca;
 
 }
